@@ -1,0 +1,38 @@
+table {
+  table-layout: fixed;
+  word-wrap: break-word;
+}
+
+.link_table_text_color{  
+  color: $dark-grey !important;
+}
+
+.page-header__top {
+  margin-top: 3.5rem;
+  background: #f7f7f7;
+  padding: $l-size 0;
+}
+
+.page-header {
+  background: #f7f7f7;
+  padding: $l-size 0;
+}
+
+.page-header__container {
+  margin: 0 auto;
+  padding: 0 $m-size;
+  max-width: 80rem;
+}
+
+.page-header__title {
+  font-weight: 300;
+  margin: 0;
+  span {
+    font-weight: 700;
+  }
+}
+
+.table-bottom {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
