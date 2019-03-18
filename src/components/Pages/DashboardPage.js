@@ -3,6 +3,8 @@ import ContaList from '../Parcials/ContasList';
 import ContaSumario from '../Parcials/ContaSumario';
 import MovimentacaoSumario from '../Parcials/MovimentacaoSumario';
 import MovimentacaoList from '../Parcials/MovimentacaoList';
+import CartaoList from '../Parcials/CartaoList';
+import CartaoSumario from '../Parcials/CartaoSumario';
 
 export class DashboardPage extends React.Component {
   render () {
@@ -12,6 +14,8 @@ export class DashboardPage extends React.Component {
         <ContaList />
         <MovimentacaoSumario />
         <MovimentacaoList />
+        <CartaoSumario />
+        <CartaoList />
       </div>  
     );
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import numeral from 'numeral';
-import {selectContas, contasTotal} from '../../redux/selector/selector';
+import {contasTotal} from '../../redux/selector/selector';
 
 export const ContaSumario = ({ contasCount, contasTotal }) => {
   const contasWord = contasCount === 1 ? 'conta' : 'contas' ;

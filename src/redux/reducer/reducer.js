@@ -26,7 +26,14 @@ export const movimentacaoReducer = (state = movimentacaoReducerDefaultState, act
       return state.filter(({ id }) => id !== action.id);    
     case 'REMOVER_MOVIMENTACOES': return state.filter(({conta}) => conta !== action.conta);
     case 'SET_MOVIMENTACOES':
-      return action.movimentacoes;
+      return action.movimentacoes.sort((a, b) => {
+        if(a.data > b.data)
+          return 1;
+        else if(b.data > a.data)
+          return -1;
+        else
+          return 0;
+      });
     default: return state;
   }
 };
@@ -57,7 +64,14 @@ export const cartaoReducer = (state = cartaoReducerDefaultState, action) => {
       });
     case 'REMOVER_CARTAO': 
       return state.filter(({id}) => (id !== action.id ));
-    case 'SET_CARTOES': return action.cartoes;
+    case 'SET_CARTOES': return action.cartoes.sort((a, b) => {
+      if(a.nome > b.nome)
+        return 1;
+      else if(b.nome > a.nome)
+        return -1;
+      else
+        return 0
+    });
     default: return state;
   }
 };
@@ -88,7 +102,14 @@ export const contasReducer = (state = contasReducerDefaultState, action) => {
     case 'REMOVER_CONTA':
       return state.filter(({ id }) => id !== action.id);
     case 'SET_CONTAS':
-      return action.contas;
+      return action.contas.sort((a, b) => {
+        if(a.nome > b.nome)
+          return 1;
+        else if(b.nome > a.nome)
+          return -1;
+        else
+          return 0
+      });
     default: return state;  
   }
 };

@@ -8,6 +8,7 @@ import AdicionarCartao from '../components/Pages/AdicionarCartao';
 import LoginPage from '../components/Pages/LoginPage';
 import EditarContaPage from '../components/Pages/EditarContaPage';
 import EditarMovimentacaoPage from '../components/Pages/EditarMovimentacaoPage';
+import EditarCartaoPage from '../components/Pages/EditarCartaoPage';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 
@@ -24,6 +25,7 @@ const AppRouter = () => (
 				<PrivateRoute path="/addCartao" component={AdicionarCartao}/>
 				<PrivateRoute path="/editConta/:id" component={EditarContaPage}/>
 				<PrivateRoute path="/editMovimentacao/:id" component={EditarMovimentacaoPage}/>
+				<PrivateRoute path="/editCartao/:id" component={EditarCartaoPage} />
 			</Switch>	
 		</div>			
 	</Router>

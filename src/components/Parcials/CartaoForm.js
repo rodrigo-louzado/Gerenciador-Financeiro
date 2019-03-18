@@ -46,7 +46,7 @@ export default class CartaoForm extends React.Component {
           />
         </div>
         <div className="form-group">
-          <input className="form-control" type="text" placeholder="Total" value={this.state.total} 
+          <input className="form-control" type="number" pattern="[0-9]+([\.][0-9][0-9])?" step="0.01" min="0" placeholder="Gasto total atual" value={this.state.total} 
             onChange={this.onTotalChange}
           />
         </div>         

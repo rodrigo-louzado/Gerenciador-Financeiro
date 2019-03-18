@@ -195,11 +195,29 @@ export const removerCartao = ({ id } = {}) => ({
   id
 });
 
+export const startRemoverCartao = ({id} = {}) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/cartoes/${id}`).remove().then(() => {
+      dispatch(removerCartao({id}));
+    });
+  };
+};
+
 export const editarCartao = (id, novo) => ({
   type: 'EDITAR_CARTAO',
   id,
   novo
 });
+
+export const startEditarCartao = (id, novo) => {
+  return (dispatch, getState) => {
+    const uid = getState().auth.uid;
+    return database.ref(`users/${uid}/cartoes/${id}`).update(novo).then(() => {
+      dispatch(editarCartao(id, novo));
+    });
+  };
+};
 
 export const setCartoes = (cartoes) => ({
   type: 'SET_CARTOES',

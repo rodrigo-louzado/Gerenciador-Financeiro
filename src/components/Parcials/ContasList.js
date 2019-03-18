@@ -12,7 +12,7 @@ export const ContaList = (props) => (
         <p>Nenhuma conta cadastrada</p>
       ) : (
         <div className="table-responsive-md">
-          <table className="table table-bordered table-hover table-bottom">
+          <table className="table table-striped table-bottom">
             <thead className="thead-dark">
               <tr>
                   <th>Conta</th>

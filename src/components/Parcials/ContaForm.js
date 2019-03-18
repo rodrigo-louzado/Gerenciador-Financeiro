@@ -46,7 +46,7 @@ export default class ContaForm extends React.Component {
             />
           </div>
           <div className="form-group">
-            <input className="form-control" type="text" placeholder="Saldo" value={this.state.saldo} 
+            <input className="form-control" type="number" placeholder="Saldo" pattern="[0-9]+([\.][0-9][0-9])?" step="0.01" min="0" value={this.state.saldo} 
               onChange={this.onSaldoChange}
             />
           </div>

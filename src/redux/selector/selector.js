@@ -33,3 +33,17 @@ export const totalDespesas = (movimentacoes) => {
 export const selectContasPorMovimentacao = (contas, movimentacao) => {
   return contas.find((conta) => conta.id === movimentacao);
 }
+
+export const selectCartoes = (cartoes) => {
+  return cartoes.map((cartao) => {return cartao});
+}
+
+export const cartoesTotal = (cartoes) => {
+  let total = 0;
+  cartoes.map((cartao) => total = total + cartao.total);
+  return total;
+}
+
+export const selectCartoesPorMovimentacao = (cartoes, movimentacao) => {
+  return cartoes.find((cartao) => cartao.id === movimentacao);
+}

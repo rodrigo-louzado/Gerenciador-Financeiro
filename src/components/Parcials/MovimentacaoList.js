@@ -12,7 +12,7 @@ export const MovimentacaoList = (props) => (
         <p>Nenhuma movimentação cadastrada</p>
       ) : (
           <div className="table-responsive-md table-bottom">
-            <table className="table table-bordered table-hover table-bottom">
+            <table className="table table-striped table-bottom">
               <thead className="thead-dark">
                 <tr>
                   <th>Descrição</th>
@@ -30,11 +30,19 @@ export const MovimentacaoList = (props) => (
                       <td>{numeral(movimentacao.valor / 100).format('$0,0.00')}</td>
                       <td>{movimentacao.tipo}</td>
                       <td>{moment(movimentacao.data).format('DD/MM/YYYY')}</td>
-                      <td>{props.contas.map((conta) => {
+                      <td>{movimentacao.tipo === 'Conta' ? (
+                        props.contas.map((conta) => {
                           if(conta.id === movimentacao.conta){ 
                             return conta.nome; 
                           } 
-                        })}</td>
+                        })
+                      ) : (
+                        props.cartoes.map((cartao) => {
+                          if(cartao.id === movimentacao.conta) {
+                            return cartao.nome;
+                          }
+                        })
+                      )}</td>
                     </tr>
                   })
                 }
@@ -49,7 +57,8 @@ export const MovimentacaoList = (props) => (
 const mapStateToProps = (state) => {
   return {
     movimentacoes: selectMovimentacoes(state.movimentacoes),
-    contas: state.contas
+    contas: state.contas,
+    cartoes: state.cartoes
   };
 };
 

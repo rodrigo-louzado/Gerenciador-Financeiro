@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import {SingleDatePicker} from 'react-dates';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
-import {selectContas} from '../../redux/selector/selector';
+import {selectContas, selectCartoes} from '../../redux/selector/selector';
 import {InputField} from './Select'
 
 class MovimentacaoForm extends React.Component {
@@ -18,7 +18,9 @@ class MovimentacaoForm extends React.Component {
       calendarFocused: false,
       error: '',
       contas: props.contas,
-      conta: ''
+      cartoes: props.cartoes,
+      conta: '',
+      cartao: ''
     };
   }
   
@@ -33,6 +35,10 @@ class MovimentacaoForm extends React.Component {
   onContaChange = (e) => {
     const conta = e;
     this.setState(() => ({ conta }))
+  };
+  onCartaoChange = (e) => {
+    const cartao = e;
+    this.setState(() => ({ cartao }))
   };
   onValorChange = (e) => {
     const valor = e.target.value;
@@ -58,7 +64,7 @@ class MovimentacaoForm extends React.Component {
     } else {
       this.setState(() => ({error: ''}));
       this.props.onSubmit({
-        conta: this.state.conta,
+        conta: this.state.conta || this.state.cartao,
         descricao: this.state.descricao,
         valor: parseFloat(this.state.valor, 10) * 100,
         data: this.state.data.valueOf(),
@@ -76,7 +82,7 @@ class MovimentacaoForm extends React.Component {
           />
         </div>
         <div className="form-group">
-          <input className="form-control" type="text" placeholder="Valor" value={this.state.valor} 
+          <input className="form-control" type="number" pattern="[0-9]+([\.][0-9][0-9])?" step="0.01" min="0" placeholder="Valor" value={this.state.valor} 
             onChange={this.onValorChange}
           />
         </div>
@@ -84,14 +90,24 @@ class MovimentacaoForm extends React.Component {
           <select className="form-control" onChange={this.onTipoChange} value={this.state.tipo}>
             <option value='Receita'>Receita</option>
             <option value='Despesa'>Despesa</option>
+            <option value='Despesa Cartão'>Despesa Cartão</option>
+            <option value='Pagar Cartão'>Pagar Cartão</option>
           </select>
-        </div>        
-        <div>    
-          {
-            this.state.contas.length === 0 ? (
-              <p>Sem contas para vincular a movimentação</p>
+        </div>
+        <div>
+          {   
+            this.state.tipo !== 'Despesa Cartão' && this.state.tipo !== 'Pagar Cartão' ? (
+              this.state.contas.length === 0 ? (
+                <p>Sem contas para vincular a movimentação</p>
+              ) : (
+                InputField(this.state.conta, this.state.contas, this.onContaChange)
+              )
             ) : (
-              InputField(this.state.conta, this.state.contas, this.onContaChange)
+              this.state.cartoes.length === 0 ? (
+                <p>Sem cartões para vincular a movimentação</p>
+              ) : (
+                InputField(this.state.cartao, this.state.cartoes, this.onCartaoChange)
+              )
             )
           }    
         </div>
@@ -115,7 +131,8 @@ class MovimentacaoForm extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    contas: selectContas(state.contas)
+    contas: selectContas(state.contas),
+    cartoes: selectCartoes(state.cartoes)
   }
 };
 
