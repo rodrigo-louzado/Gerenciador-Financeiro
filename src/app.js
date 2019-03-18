@@ -10,6 +10,7 @@ import configStore from './redux/store';
 import {firebase} from './firebase/firebase';
 import {login, logout} from './redux/action/auth';
 import {startSetMovimentacoes, startSetContas, startSetCartoes} from './redux/action/actions';
+import LoadingPage from './components/Pages/LoadingPage';
 
 // Numeral config
 numeral.register('locale', 'br', {
@@ -24,7 +25,7 @@ numeral.register('locale', 'br', {
 
 numeral.locale('br');
 
-//Load App
+// Config store
 const store = configStore();
 
 const jsx = (
@@ -41,8 +42,9 @@ const renderApp = () => {
   }
 };
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
+// Core App
 firebase.auth().onAuthStateChanged((user) => {
   if(user) {
     store.dispatch(login(user.uid));
