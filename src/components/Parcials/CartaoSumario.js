@@ -8,7 +8,7 @@ export const CartoesSumario = ({ contasCount, cartoesTotal }) => {
   const cartoesTotalFormatado = numeral(cartoesTotal / 100).format('$0,0.00');
   
   return (
-    <div className="page-header__top">
+    <div className="page-header">
       <div className="container page-header__container">
         <h3 className="page-header__title">Gasto total em cartões: {cartoesTotalFormatado}</h3>
       </div>
