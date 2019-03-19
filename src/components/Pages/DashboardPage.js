@@ -12,10 +12,10 @@ export class DashboardPage extends React.Component {
       <div>
         <ContaSumario />
         <ContaList />
-        <MovimentacaoSumario />
-        <MovimentacaoList />
         <CartaoSumario />
         <CartaoList />
+        <MovimentacaoSumario />
+        <MovimentacaoList />
       </div>  
     );
   }

@@ -20,13 +20,13 @@ export const movimentacoesTotal = (movimentacoes) => {
 
 export const totalReceitas = (movimentacoes) => {
   let total = 0;
-  movimentacoes.map((movimentacao) => {if(movimentacao.tipo === 'Receita') total = total + movimentacao.valor});
+  movimentacoes.map((movimentacao) => {if(movimentacao.tipo === 'Receita' || movimentacao.tipo === 'Pagar Cartão') total = total + movimentacao.valor});
   return total;
 }
 
 export const totalDespesas = (movimentacoes) => {
   let total = 0;
-  movimentacoes.map((movimentacao) => {if(movimentacao.tipo === 'Despesa') total = total + movimentacao.valor});
+  movimentacoes.map((movimentacao) => {if(movimentacao.tipo === 'Despesa' || movimentacao.tipo === 'Despesa Cartão') total = total + movimentacao.valor});
   return total;
 }
 
