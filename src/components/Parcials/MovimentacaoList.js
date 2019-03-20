@@ -30,7 +30,7 @@ export const MovimentacaoList = (props) => (
                       <td>{numeral(movimentacao.valor / 100).format('$0,0.00')}</td>
                       <td>{movimentacao.tipo}</td>
                       <td>{moment(movimentacao.data).format('DD/MM/YYYY')}</td>
-                      <td>{movimentacao.tipo === 'Conta' ? (
+                      <td>{(movimentacao.tipo === 'Receita') || (movimentacao.tipo === 'Despesa') ? (
                         props.contas.map((conta) => {
                           if(conta.id === movimentacao.conta){ 
                             return conta.nome; 

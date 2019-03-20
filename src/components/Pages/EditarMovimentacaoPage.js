@@ -13,11 +13,19 @@ export class EditarMovimentacaoPage extends React.Component {
       let cartao = {
         nome: cartaoObj.nome,
         total: cartaoObj.total
-      };
+      };       
       if(movimentacao.tipo === 'Despesa Cartão') {
+        //Remover valor anterior da despesa do cartão
+        cartao.total = cartao.total - this.props.movimentacao.valor;
+        this.props.startEditarCartao(movimentacao.conta, cartao);
+        //Adicionar valor posterior da despesa do cartão
         cartao.total = cartao.total + movimentacao.valor;
         this.props.startEditarCartao(movimentacao.conta, cartao);
       } else {
+        //Remover valor anterior do pagamento no cartão
+        cartao.total = cartao.total + this.props.movimentacao.valor;
+        this.props.startEditarCartao(movimentacao.conta, cartao);
+        //Adicionar valor posterior do pagamento no cartão
         cartao.total = cartao.total - movimentacao.valor;
         this.props.startEditarCartao(movimentacao.conta, cartao);
       }
@@ -30,9 +38,17 @@ export class EditarMovimentacaoPage extends React.Component {
         saldo: contaObj.saldo
       }; 
       if(movimentacao.tipo === 'Receita') {
+        //Remover valor anterior da receita
+        conta.saldo = conta.saldo - this.props.movimentacao.valor;
+        this.props.startEditarConta(movimentacao.conta, conta);
+        //Adicionar novo valor da receita
         conta.saldo = conta.saldo + movimentacao.valor;
         this.props.startEditarConta(movimentacao.conta, conta);
       } else {
+        //Remover valor anterior da despesa
+        conta.saldo = conta.saldo + this.props.movimentacao.valor;
+        this.props.startEditarConta(movimentacao.conta, conta);
+        //Adicionar novo valor da despesa
         conta.saldo = conta.saldo - movimentacao.valor;
         this.props.startEditarConta(movimentacao.conta, conta);
       }      
