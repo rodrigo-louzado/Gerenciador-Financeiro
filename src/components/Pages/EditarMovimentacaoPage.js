@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import MovimentacaoForm from '../Parcials/MovimentacaoForm';
+import EditMovimentacaoForm from '../Parcials/EditMovimentacaoForm';
 import { startEditarConta, startEditarMovimentacao, startRemoverMovimentacao, startEditarCartao } from '../../redux/action/actions';
 import {selectContasPorMovimentacao, selectCartoesPorMovimentacao} from '../../redux/selector/selector'
 
@@ -44,7 +44,7 @@ export class EditarMovimentacaoPage extends React.Component {
         //Adicionar novo valor da receita
         conta.saldo = conta.saldo + movimentacao.valor;
         this.props.startEditarConta(movimentacao.conta, conta);
-      } else {
+      } else if (movimentacao.tipo === 'Despesa') {
         //Remover valor anterior da despesa
         conta.saldo = conta.saldo + this.props.movimentacao.valor;
         this.props.startEditarConta(movimentacao.conta, conta);
@@ -108,7 +108,7 @@ export class EditarMovimentacaoPage extends React.Component {
           </div>
         </div>
         <div className="container form-align"> 
-          <MovimentacaoForm
+          <EditMovimentacaoForm
             movimentacao={this.props.movimentacao}
             onSubmit={this.onSubmit}
           />
