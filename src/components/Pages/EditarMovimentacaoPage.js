@@ -36,7 +36,7 @@ export class EditarMovimentacaoPage extends React.Component {
       let conta = {
         nome: contaObj.nome,
         saldo: contaObj.saldo
-      }; 
+      };
       if(movimentacao.tipo === 'Receita') {
         //Remover valor anterior da receita
         conta.saldo = conta.saldo - this.props.movimentacao.valor;

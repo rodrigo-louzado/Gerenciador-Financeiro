@@ -19,7 +19,7 @@ class EditMovimentacaoForm extends React.Component {
       error: '',
       contas: props.contas,
       cartoes: props.cartoes,
-      conta: '',
+      conta: props.movimentacao ? props.movimentacao.conta : '',
       cartao: ''
     };
   }
@@ -109,7 +109,7 @@ class EditMovimentacaoForm extends React.Component {
                 DisableInputField(this.state.cartao, this.state.cartoes, this.onCartaoChange)
               )
             )
-          }    
+          }   
         </div>
         <SingleDatePicker
           date={this.state.data}
